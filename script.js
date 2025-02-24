@@ -1,30 +1,21 @@
 async function checkIngredients() {
     let input = document.getElementById("ingredientInput").value;
-    
+
+    // Simulating backend response (Replace this with an actual backend request if needed)
     let result = await fetch(`/process?ingredients=${encodeURIComponent(input)}`)
                        .then(response => response.json());
 
-    let outputElement = document.getElementById("output");
-    outputElement.innerHTML = ""; // Clear previous output
+    // Parse the response and update the output sections
+    document.getElementById("nac80Output").innerHTML = formatOutput("NAC-80 Ingredients", result.nac80);
+    document.getElementById("fragranceOutput").innerHTML = formatOutput("Fragrance Ingredients", result.fragrance);
+    document.getElementById("adjacentOutput").innerHTML = formatOutput("Adjacent Ingredients", result.adjacent);
+}
 
-    // NAC-80 ingredients
-    if (result.nac80.length > 0) {
-        outputElement.innerHTML += `⚠️ NAC-80 Ingredients Found:<br>${result.nac80.join(", ")}<br><br>`;
+// Function to format the output with correct icons (✅ or ⚠️)
+function formatOutput(title, items) {
+    if (items.length > 0) {
+        return `<span class="warning">⚠️ ${title} Found:</span> ${items.join(", ")}`;
     } else {
-        outputElement.innerHTML += `✅ No NAC-80 ingredients found.<br><br>`;
-    }
-
-    // Fragrance ingredients
-    if (result.fragrance.length > 0) {
-        outputElement.innerHTML += `⚠️ Fragrance Ingredients Found:<br>${result.fragrance.join(", ")}<br><br>`;
-    } else {
-        outputElement.innerHTML += `✅ No additional fragrance ingredients found.<br><br>`;
-    }
-
-    // Adjacent ingredients
-    if (result.adjacent.length > 0) {
-        outputElement.innerHTML += `⚠️ Adjacent Ingredients Found:<br>${result.adjacent.join(", ")}<br><br>`;
-    } else {
-        outputElement.innerHTML += `✅ No adjacent ingredients found.<br><br>`;
+        return `<span class="checkmark">✅ No ${title.toLowerCase()} found.</span>`;
     }
 }
