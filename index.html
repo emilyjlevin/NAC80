@@ -19,6 +19,10 @@
             padding: 10px;
             font-size: 16px;
         }
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -32,16 +36,6 @@
     <h2>Results:</h2>
     <p id="output"></p>
 
-    <script>
-        async function checkIngredients() {
-            let input = document.getElementById("ingredientInput").value;
-            
-            // Send input to your processing backend (e.g., R or JavaScript function)
-            let result = await fetch(`/process?ingredients=${encodeURIComponent(input)}`)
-                               .then(response => response.text());
-
-            document.getElementById("output").innerText = result;
-        }
-    </script>
+    <script src="script.js"></script> <!-- Link to external JavaScript file -->
 </body>
 </html>
