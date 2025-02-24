@@ -62,10 +62,10 @@ function checkIngredients() {
     document.getElementById("adjacentOutput").innerHTML = formatOutput("Adjacent Ingredients", adjacentMatches);
 }
 
-// Function to format the output with correct icons (✅ or 🚨🚩)
+// Function to format the output with correct icons (✅ or 🚨)
 function formatOutput(title, items) {
     if (items.length > 0) {
-        return `<span class="warning">🚨🚩 ${title} Found:</span> ${items.join(", ")}`;
+        return `<span class="warning">🚨 ${title} </span> ${items.join(", ")}`;
     } else {
         return `<span class="checkmark">✅ No ${title.toLowerCase()} found.</span>`;
     }
