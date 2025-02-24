@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAC80 Checker</title>
+    <title>NAC80 Sunscreen Checker</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,8 +19,18 @@
             padding: 10px;
             font-size: 16px;
         }
-        #output {
+        .result {
+            font-size: 18px;
             margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+        .checkmark {
+            color: green;
+            font-weight: bold;
+        }
+        .warning {
+            color: red;
             font-weight: bold;
         }
     </style>
@@ -34,8 +44,12 @@
     <button onclick="checkIngredients()">Check Ingredients</button>
     
     <h2>Results:</h2>
-    <p id="output"></p>
+    <div id="results" class="result">
+        <p id="nac80Output"></p>
+        <p id="fragranceOutput"></p>
+        <p id="adjacentOutput"></p>
+    </div>
 
-    <script src="script.js"></script> <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
