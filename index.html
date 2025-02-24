@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAC80 Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NAC80 Sunscreen Checker</h1>
+    <p>Enter a sunscreen ingredient list below:</p>
+    
+    <textarea id="ingredientInput" placeholder="Paste your ingredients here..."></textarea>
+    <br>
+    <button onclick="checkIngredients()">Check Ingredients</button>
+    
+    <h2>Results:</h2>
+    <p id="output"></p>
+
+    <script>
+        async function checkIngredients() {
+            let input = document.getElementById("ingredientInput").value;
+            
+            // Send input to your processing backend (e.g., R or JavaScript function)
+            let result = await fetch(`/process?ingredients=${encodeURIComponent(input)}`)
+                               .then(response => response.text());
+
+            document.getElementById("output").innerText = result;
+        }
+    </script>
+</body>
+</html>
