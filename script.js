@@ -29,16 +29,20 @@ const nac80List = [
 
 // Function to check sunscreen ingredients
 function checkIngredients() {
-    let input = document.getElementById("ingredientInput").value;
+    let input = document.getElementById("ingredientInput").value.trim();
     
+    if (!input) {
+        document.getElementById("output").innerHTML = "<p>Please enter ingredients to check.</p>";
+        return;
+    }
+
     // Convert input into an array, trimming spaces
     let userIngredients = input.split(",").map(ing => ing.trim().toLowerCase());
 
-    // NAC-80 Matches
-    let matchingIngredients = userIngredients.filter(ing => nac80List.includes(ing));
-
-    // Acrylate Detection (Matches anything containing "acrylate")
-    let acrylateMatches = userIngredients.filter(ing => ing.includes("acrylate"));
+    // NAC-80 Matches (Now including acrylates)
+    let matchingIngredients = userIngredients.filter(ing => 
+        nac80List.includes(ing) || ing.includes("acrylate")
+    );
 
     // Fragrance Detection (Catches multiple variations)
     let fragranceMatches = userIngredients.filter(ing => 
@@ -55,7 +59,6 @@ function checkIngredients() {
     let outputHTML = "<h2>Results:</h2>";
 
     outputHTML += formatResult("NAC-80 Ingredients Found", matchingIngredients);
-    outputHTML += formatResult("Acrylates Detected", acrylateMatches);
     outputHTML += formatResult("Fragrance Ingredients Found", fragranceMatches);
     outputHTML += formatResult("Adjacent Ingredients Found", adjacentIngredients);
 
