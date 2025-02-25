@@ -1,72 +1,72 @@
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("checkButton").addEventListener("click", checkIngredients);
+});
+
+// NAC-80 Allergen List
+const nac80List = [
+    "1,3-diphenylguanidine", "2-hydroxyethyl methacrylate", "2-mercaptobenzothiazole",
+    "2-n-octyl-4-isothiazolin-3-one", "3-(dimethylamino)-1-propylamine", "4-tert-butylphenolformaldehyde resin",
+    "amidoamine", "amerchol l-101", "ammonium persulfate", "bacitracin", "benzalkonium chloride",
+    "benzisothiazolinone", "benzocaine", "benzophenone-4", "benzyl alcohol", "benzyl salicylate",
+    "black rubber mix", "bromo-2-nitropropane-1,3-diol", "budesonide", "caine mix iii", "carba mix",
+    "chlorhexidine digluconate", "chloroxylenol", "cinnamal", "clobetasol-17-propionate",
+    "cobalt(ii)chloride hexahydrate", "cocamide dea", "cocamidopropyl betaine", "colophonium",
+    "compositae mix ii", "decyl glucoside", "diazolidinyl urea", "dmdm hydantoin", "epoxy resin, bisphenol a",
+    "ethyl acrylate", "ethylenediamine dihydrochloride", "formaldehyde", "fragrance mix i",
+    "fragrance mix ii", "hydroperoxides of limonene", "hydroperoxides of linalool",
+    "hydroxyisohexyl 3-cyclohexene carboxaldehyde", "imidazolidinyl urea", "iodopropynyl butylcarbamate",
+    "lauryl polyglucose", "lanolin alcohol", "lidocaine", "mercapto mix", "methyl methacrylate",
+    "methylisothiazolinone", "methylisothiazolinone+methylchloroisothiazolinone",
+    "methyldibromo glutarinitrile", "mixed dialkyl thiourea", "neomycin sulfate",
+    "nickel(ii)sulfate hexahydrate", "n-isopropyl-n-phenyl-4-phenylenediamine",
+    "oleamidopropyl dimethylamine", "p-phenylenediamine", "paraben mix", "peru balsam",
+    "polymyxin b sulfate", "potassium dichromate", "propyl gallate", "propylene glycol", "propolis",
+    "pramoxine hydrochloride", "quaternium-15", "sesquiterpene lactone mix", "sodium benzoate",
+    "sodium metabisulfite", "sorbitan oleate", "sorbitan sesquioleate", "textile dye mix ii",
+    "tea tree oil oxidized", "thiuram mix", "tixocortol-21-pivalate", "tocopherol",
+    "toluene-2,5-diamine sulfate", "toluenesulfonamide formaldehyde resin", "ylang ylang oil"
+];
+
+// Function to check sunscreen ingredients
 function checkIngredients() {
     let input = document.getElementById("ingredientInput").value;
+    
+    // Convert input into an array, trimming spaces
+    let userIngredients = input.split(",").map(ing => ing.trim().toLowerCase());
 
-    if (!input.trim()) {
-        alert("Please enter a list of ingredients.");
-        return;
-    }
+    // NAC-80 Matches
+    let matchingIngredients = userIngredients.filter(ing => nac80List.includes(ing));
 
-    let userIngredients = input.split(",").map(i => i.trim().toLowerCase());
+    // Acrylate Detection (Matches anything containing "acrylate")
+    let acrylateMatches = userIngredients.filter(ing => ing.includes("acrylate"));
 
-    // NAC-80 Allergen List
-    const nac80List = [
-        "1,3-diphenylguanidine", "2-hydroxyethyl methacrylate", 
-        "2-mercaptobenzothiazole", "2-n-octyl-4-isothiazolin-3-one", 
-        "3-(dimethylamino)-1-propylamine", "4-tert-butylphenolformaldehyde resin", 
-        "amidoamine", "amerchol l-101", "ammonium persulfate", 
-        "bacitracin", "benzalkonium chloride", "benzisothiazolinone", 
-        "benzocaine", "benzophenone-4", "benzyl alcohol", 
-        "benzyl salicylate", "black rubber mix", "bromo-2-nitropropane-1,3-diol", 
-        "budesonide", "caine mix iii", "carba mix", "chlorhexidine digluconate", 
-        "chloroxylenol", "cinnamal", "clobetasol-17-propionate", 
-        "cobalt(ii)chloride hexahydrate", "cocamide dea", "cocamidopropyl betaine", 
-        "colophonium", "compositae mix ii", "decyl glucoside", 
-        "diazolidinyl urea", "dmdm hydantoin", "epoxy resin, bisphenol a", 
-        "ethyl acrylate", "ethylenediamine dihydrochloride", "formaldehyde", 
-        "fragrance mix i", "fragrance mix ii", "hydroperoxides of limonene", 
-        "hydroperoxides of linalool", "hydroxyisohexyl 3-cyclohexene carboxaldehyde", 
-        "imidazolidinyl urea", "iodopropynyl butylcarbamate", "lauryl polyglucose", 
-        "lanolin alcohol", "lidocaine", "mercapto mix", "methyl methacrylate", 
-        "methylisothiazolinone", "methylisothiazolinone+methylchloroisothiazolinone", 
-        "methyldibromo glutarinitrile", "mixed dialkyl thiourea", "neomycin sulfate", 
-        "nickel(ii)sulfate hexahydrate", "n-isopropyl-n-phenyl-4-phenylenediamine", 
-        "oleamidopropyl dimethylamine", "p-phenylenediamine", "paraben mix", 
-        "peru balsam", "polymyxin b sulfate", "potassium dichromate", 
-        "propyl gallate", "propylene glycol", "propolis", "pramoxine hydrochloride", 
-        "quaternium-15", "sesquiterpene lactone mix", "sodium benzoate", 
-        "sodium metabisulfite", "sorbitan oleate", "sorbitan sesquioleate", 
-        "textile dye mix ii", "tea tree oil oxidized", "thiuram mix", 
-        "tixocortol-21-pivalate", "tocopherol", "toluene-2,5-diamine sulfate", 
-        "toluenesulfonamide formaldehyde resin", "ylang ylang oil"
-    ];
-
-    // Check NAC-80 ingredients
-    let nac80Matches = userIngredients.filter(ingredient => nac80List.includes(ingredient));
-
-    // Check for fragrance-related ingredients
-    let fragranceMatches = userIngredients.filter(ingredient =>
-        ingredient.includes("fragrance") || ingredient.includes("parfum") || 
-        ingredient.includes("perfume") || ingredient.includes("parfume") || 
-        ingredient.includes("perfum")
+    // Fragrance Detection (Catches multiple variations)
+    let fragranceMatches = userIngredients.filter(ing => 
+        /fragrance|parfum|perfume|parfume|perfum/i.test(ing) && !/fragrance mix i|fragrance mix ii/i.test(ing)
     );
 
-    // Check for adjacent ingredients (Tocopheryl Acetate, Limonene, Linalool)
-    let adjacentMatches = userIngredients.filter(ingredient =>
-        /tocopheryl acetate|limonene|linalool/.test(ingredient) &&
-        !/hydroperoxides of linalool|hydroperoxides of limonene/.test(ingredient)
+    // Adjacent Ingredients (Detects tocopheryl acetate, limonene, linalool, but excludes hydroperoxides)
+    let adjacentIngredients = userIngredients.filter(ing => 
+        /tocopheryl acetate|limonene|linalool/i.test(ing) && 
+        !/hydroperoxides of linalool|hydroperoxides of limonene/i.test(ing)
     );
 
-    // Format the output
-    document.getElementById("nac80Output").innerHTML = formatOutput("NAC-80 Ingredients", nac80Matches);
-    document.getElementById("fragranceOutput").innerHTML = formatOutput("Fragrance Ingredients", fragranceMatches);
-    document.getElementById("adjacentOutput").innerHTML = formatOutput("Adjacent Ingredients", adjacentMatches);
+    // Output Formatting
+    let outputHTML = "<h2>Results:</h2>";
+
+    outputHTML += formatResult("NAC-80 Ingredients Found", matchingIngredients);
+    outputHTML += formatResult("Acrylates Detected", acrylateMatches);
+    outputHTML += formatResult("Fragrance Ingredients Found", fragranceMatches);
+    outputHTML += formatResult("Adjacent Ingredients Found", adjacentIngredients);
+
+    document.getElementById("output").innerHTML = outputHTML;
 }
 
-// Function to format the output with correct icons (✅ or 🚨)
-function formatOutput(title, items) {
-    if (items.length > 0) {
-        return `<span class="warning">🚨 ${title} </span> ${items.join(", ")}`;
+// Helper function to format results
+function formatResult(title, list) {
+    if (list.length > 0) {
+        return `<p style="color: red;">⚠️ <strong>${title}:</strong> ${list.join(", ")}</p>`;
     } else {
-        return `<span class="checkmark">✅ No ${title.toLowerCase()} found.</span>`;
+        return `<p style="color: green;">✅ No ${title.toLowerCase()}.</p>`;
     }
 }
