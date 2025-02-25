@@ -23,14 +23,17 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            display: block;
+            margin: 10px auto;
         }
         button:hover {
             background-color: #0056b3;
         }
         #output {
             margin-top: 20px;
-            text-align: left;
+            text-align: center;
             display: inline-block;
+            max-width: 80%;
         }
     </style>
 </head>
@@ -40,7 +43,7 @@
     
     <textarea id="ingredientInput" placeholder="Paste your ingredients here..."></textarea>
     <br>
-    <button onclick="checkIngredients()">Check Ingredients</button>
+    <button id="checkButton">Check Ingredients</button>
     
     <div id="output"></div>
 
