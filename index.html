@@ -3,51 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAC80 Sunscreen Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        textarea {
-            width: 80%;
-            height: 100px;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .result {
-            font-size: 18px;
-            margin-top: 20px;
-            text-align: left;
-            display: inline-block;
-        }
-        .checkmark {
-            color: green;
-            font-weight: bold;
-        }
-        .warning {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>NAC80 Checker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>NAC80 Sunscreen Checker</h1>
-    <p>Enter a sunscreen ingredient list below:</p>
-    
-    <textarea id="ingredientInput" placeholder="Paste your ingredients here..."></textarea>
-    <br>
-    <button onclick="checkIngredients()">Check Ingredients</button>
-    
-    <h2>Results:</h2>
-    <div id="results" class="result">
-        <p id="nac80Output"></p>
-        <p id="fragranceOutput"></p>
-        <p id="adjacentOutput"></p>
+    <div class="container">
+        <h1>NAC80 Sunscreen Checker</h1>
+        <p>Enter a sunscreen ingredient list below:</p>
+
+        <textarea id="ingredientInput" placeholder="Paste your ingredients here..."></textarea>
+        <br>
+        <button id="checkButton">Check Ingredients</button>
+
+        <div id="output"></div>
     </div>
 
     <script src="script.js"></script>
