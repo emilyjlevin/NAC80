@@ -29,9 +29,9 @@
         }
         #output {
             margin-top: 20px;
-            text-align: left;
+            text-align: center;
             display: inline-block;
-            text-align: left;
+            max-width: 80%;
         }
     </style>
 </head>
@@ -41,19 +41,10 @@
     
     <textarea id="ingredientInput" placeholder="Paste your ingredients here..."></textarea>
     <br>
-    <button onclick="checkIngredients()">Check Ingredients</button>
+    <button id="checkButton">Check Ingredients</button>
     
     <div id="output"></div>
 
-    <script>
-        function checkIngredients() {
-            let input = document.getElementById("ingredientInput").value.trim();
-            if (!input) {
-                document.getElementById("output").innerHTML = "<p>Please enter ingredients to check.</p>";
-                return;
-            }
-            document.getElementById("output").innerHTML = "<p>Processing... (backend logic needed)</p>";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
