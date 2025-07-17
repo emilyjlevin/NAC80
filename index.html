@@ -1,40 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check My Sunscreen</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAC80 Sunscreen Checker</title>
 
-  <!-- Google tag -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4KMQKF2F5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-T4KMQKF2F5');
-  </script>
-
-  <link rel="stylesheet" href="style.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4KMQKF2F5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-T4KMQKF2F5');
+ 
+</script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 10px auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            text-align: center;
+            display: inline-block;
+            max-width: 80%;
+        }
+    </style>
 </head>
 <body>
+    <h1>NAC80 Sunscreen Checker</h1>
+    <p>Enter a sunscreen ingredient list below:</p>
 
-  <div class="search-container">
-    <h1>Check My Sunscreen</h1>
-    <p>Start typing a brand name to find your sunscreen:</p>
-    <input type="text" id="brandSearch" placeholder="e.g., Neutrogena" />
-  </div>
-
-  <div id="resultsGrid" class="grid-container"></div>
-
-  <hr style="margin: 50px 0;">
-
-  <div class="ingredient-checker">
-    <h2>Or paste your ingredients below:</h2>
-    <textarea id="ingredientInput" placeholder="e.g., homosalate, octocrylene, etc."></textarea>
+        <textarea id="ingredientInput" placeholder="Paste your ingredients here...&#10&#10;&#10;&#10;&#10;Example: homosalate, octocrylene, etc"></textarea>
+    
+    <br>
     <button id="checkButton">Check Ingredients</button>
+    
     <div id="output"></div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
