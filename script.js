@@ -37,7 +37,8 @@ function checkIngredients() {
     }
 
     // Convert input into an array, trimming spaces
-    let userIngredients = input.split(",").map(ing => ing.trim().toLowerCase());
+    //old version: let userIngredients = input.split(",").map(ing => ing.trim().toLowerCase());
+    let userIngredients = input.split(/[,•]/).map(ing => ing.trim().toLowerCase());
 
     // NAC-80 Matches (Now including acrylates)
     let matchingIngredients = userIngredients.filter(ing => 
