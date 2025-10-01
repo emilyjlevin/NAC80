@@ -66,18 +66,7 @@ function checkIngredients() {
     document.getElementById("output").innerHTML = outputHTML;
 }
 
-/*
-// Helper function to format results
-function formatResult(title, list) {
-    if (list.length > 0) {
-        return `<p style="color: red;">⚠️ <strong>${title}:</strong> ${list.join(", ")}</p>`;
-    } else {
-        return `<p style="color: green;">✅ No ${title.toLowerCase()}.</p>`;
-    }
-}
-*/
-
-// ✅ New Helper function with tooltip support
+// USE PNG TOOLTIP INSTEAD OF ❓EMOJI
 function formatResult(title, list) {
     let tooltipText = "";
 
@@ -89,7 +78,12 @@ function formatResult(title, list) {
         tooltipText = "Adjacent ingredients are not on the NAC-80 list but are chemically or immunologically related, such as tocopheryl acetate (related to vitamin E/tocopherol, which is a NAC-80 allergen).";
     }
 
-    const tooltipHTML = `<span class="tooltip">❓<span class="tooltiptext">${tooltipText}</span></span>`;
+    // USE MY LOCAL PNG ICON INSTEAD OF ❓ EMOJI
+    const tooltipHTML = `
+      <span class="tooltip">
+        <img src="images/question_tooltip_Gray_NoBackground.png" class="tooltip-icon" alt="?" style="width: 14px; vertical-align: middle; margin-left: 4px;">
+        <span class="tooltiptext">${tooltipText}</span>
+      </span>`;
 
     if (list.length > 0) {
         return `<p style="color: red;">⚠️ <strong>${title}:</strong> ${tooltipHTML} ${list.join(", ")}</p>`;
@@ -97,5 +91,7 @@ function formatResult(title, list) {
         return `<p style="color: green;">✅ No ${title.toLowerCase()}. ${tooltipHTML}</p>`;
     }
 }
+
+
 
 
