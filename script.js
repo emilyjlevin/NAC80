@@ -81,7 +81,7 @@ function formatResult(title, list) {
     // USE MY LOCAL PNG ICON INSTEAD OF ❓ EMOJI
     const tooltipHTML = `
       <span class="tooltip">
-        <img src="images/question_tooltip_Gray_NoBackground.png" class="tooltip-icon" alt="?" style="width: 14px; vertical-align: middle; margin-left: 4px;">
+        <img src="images/question_tooltip_GrayBlack_NoBackground.png" class="tooltip-icon" alt="?" style="width: 14px; vertical-align: middle; margin-left: 4px;">
         <span class="tooltiptext">${tooltipText}</span>
       </span>`;
 
