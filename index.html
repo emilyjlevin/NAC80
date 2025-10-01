@@ -47,7 +47,42 @@
             max-width: 80%;
         }
     </style>
+
+
+  <!-- Hover Tooltip questionmark -->
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 0%;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+    
+    
 </head>
+    
 <body>
     <h1>NAC80 Sunscreen Checker</h1>
     <p>Enter a sunscreen ingredient list below:</p>
