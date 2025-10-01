@@ -66,6 +66,7 @@ function checkIngredients() {
     document.getElementById("output").innerHTML = outputHTML;
 }
 
+/*
 // Helper function to format results
 function formatResult(title, list) {
     if (list.length > 0) {
@@ -74,3 +75,27 @@ function formatResult(title, list) {
         return `<p style="color: green;">✅ No ${title.toLowerCase()}.</p>`;
     }
 }
+*/
+
+// ✅ New Helper function with tooltip support
+function formatResult(title, list) {
+    let tooltipText = "";
+
+    if (title.includes("NAC-80")) {
+        tooltipText = "NAC-80 allergens are the 80 most common allergens identified by the North American Contact Dermatitis Group and routinely used in patch testing.";
+    } else if (title.includes("Fragrance")) {
+        tooltipText = "These include ingredients labeled as 'fragrance', 'parfum', 'perfume', etc., which may not be individually listed but can cause allergic reactions.";
+    } else if (title.includes("Adjacent")) {
+        tooltipText = "Adjacent ingredients are not on the NAC-80 list but are chemically or immunologically related, such as tocopheryl acetate (related to vitamin E/tocopherol, which is a NAC-80 allergen).";
+    }
+
+    const tooltipHTML = `<span class="tooltip">❓<span class="tooltiptext">${tooltipText}</span></span>`;
+
+    if (list.length > 0) {
+        return `<p style="color: red;">⚠️ <strong>${title}:</strong> ${tooltipHTML} ${list.join(", ")}</p>`;
+    } else {
+        return `<p style="color: green;">✅ No ${title.toLowerCase()}. ${tooltipHTML}</p>`;
+    }
+}
+
+
