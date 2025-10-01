@@ -85,13 +85,14 @@
         /* Tooltip styling */
         .tooltip-icon {
             height: 18px;
-            width: auto;
-            /* width: 18px; */
+            /* width: auto; */
+            width: 18px;
+            object-fit: cover;
             margin-left: 6px;
             vertical-align: middle;
             cursor: help;
         }
-        
+
     </style>
     
     
@@ -105,6 +106,18 @@
     
     <br>
     <button id="checkButton">Check Ingredients</button>
+
+        <!-- ✅ Example tooltip placement (you can move this anywhere) -->
+    <p style="color: red; font-weight: bold;">
+        NAC-80 Ingredients Found
+        <span class="tooltip">
+            <img src="feab8950-8c0d-4f0c-8960-e97cf020267c.png" alt="Help" class="tooltip-icon">
+            <span class="tooltiptext">
+                This checker scans your ingredients for NAC-80 allergens, fragrances, and adjacent sensitizers.
+            </span>
+        </span>
+    </p>
+    
     
     <div id="output"></div>
 
