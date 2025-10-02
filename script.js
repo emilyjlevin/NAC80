@@ -77,18 +77,20 @@ function formatResult(title, list) {
     } else if (title.includes("Adjacent")) {
         tooltipText = "Adjacent ingredients are not on the NAC-80 list but are chemically or immunologically related, such as tocopheryl acetate (related to vitamin E/tocopherol, which is a NAC-80 allergen).";
     }
-
-    // WRAP THE TITLE TEXT ITSELF IN TOOLTIP SPAN
+    
+    // Tooltip wrapper (without hard-coded <strong>)
     const tooltipHTML = `
       <span class="tooltip">
-        <strong>${title}</strong>
+        ${title}
         <span class="tooltiptext">${tooltipText}</span>
       </span>`;
-
+    
     if (list.length > 0) {
-        return `<p style="color: red;">⚠️ ${tooltipHTML}: ${list.join(", ")}</p>`;
+        // FOUND → bold + red
+        return `<p style="color: red;">⚠️ <strong>${tooltipHTML}:</strong> ${list.join(", ")}</p>`;
     } else {
-        return `<p style="color: green;">✅ No ${tooltipHTML.toLowerCase()}.</p>`;
+        // NOT FOUND → no bold + green
+        return `<p style="color: green;">✅ No ${title}.</p>`;
     }
 }
 
