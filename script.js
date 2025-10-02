@@ -78,25 +78,21 @@ function formatResult(title, list) {
         tooltipText = "Adjacent ingredients are not on the NAC-80 list but are chemically or immunologically related, such as tocopheryl acetate (related to vitamin E/tocopherol, which is a NAC-80 allergen).";
     }
     
-    // Tooltip wrapper
-        const tooltipHTML = `
+    // tooltip wrapper
+    const tooltipHTML = `
       <span class="tooltip">
         ${title}
-        <span class="tooltiptext">${tooltipText}</span>
+        <span class="tooltiptext not-bold">${tooltipText}</span>
       </span>`;
 
-     if (list.length > 0) {
+    // ✅ NEW: ONLY ONE RETURN BLOCK (removed duplicate)
+    if (list.length > 0) {
+        // ✅ NEW: <strong> ONLY WRAPS THE TOOLTIP TITLE, NOT THE BUBBLE
         return `<p style="color: red;">⚠️ <strong>${tooltipHTML}</strong>: ${list.join(", ")}</p>`;
     } else {
-        return `<p style="color: green;">✅ No ${tooltipHTML.toLowerCase()}.</p>`;
-    }
-    
-    if (list.length > 0) {
-        // FOUND → bold + red
-        return `<p style="color: red;">⚠️ <strong>${tooltipHTML}:</strong> ${list.join(", ")}</p>`;
-    } else {
-        // NOT FOUND → no bold + green
-        return `<p style="color: green;">✅ No ${title}.</p>`;
+        // ✅ NEW: REMOVED .toLowerCase() SO CAPITALIZATION STAYS (e.g., "Fragrance")
+        // ✅ NEW: NO BOLD FOR GREEN TEXT
+        return `<p style="color: green;">✅ No ${tooltipHTML}.</p>`;
     }
 }
 
