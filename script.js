@@ -66,7 +66,7 @@ function checkIngredients() {
     document.getElementById("output").innerHTML = outputHTML;
 }
 
-// USE PNG TOOLTIP INSTEAD OF ❓EMOJI
+// MAKE TITLE TEXT THE HOVER AREA
 function formatResult(title, list) {
     let tooltipText = "";
 
@@ -78,17 +78,17 @@ function formatResult(title, list) {
         tooltipText = "Adjacent ingredients are not on the NAC-80 list but are chemically or immunologically related, such as tocopheryl acetate (related to vitamin E/tocopherol, which is a NAC-80 allergen).";
     }
 
-    // USE MY LOCAL PNG ICON INSTEAD OF ❓ EMOJI
+    // WRAP THE TITLE TEXT ITSELF IN TOOLTIP SPAN
     const tooltipHTML = `
       <span class="tooltip">
-        <img src="images/question_tooltip_GrayBlack_NoBackground.png" class="tooltip-icon" alt="?" style="width: 14px; vertical-align: middle; margin-left: 4px;">
+        <strong>${title}</strong>
         <span class="tooltiptext">${tooltipText}</span>
       </span>`;
 
     if (list.length > 0) {
-        return `<p style="color: red;">⚠️ <strong>${title}:</strong> ${tooltipHTML} ${list.join(", ")}</p>`;
+        return `<p style="color: red;">⚠️ ${tooltipHTML}: ${list.join(", ")}</p>`;
     } else {
-        return `<p style="color: green;">✅ No ${title.toLowerCase()}. ${tooltipHTML}</p>`;
+        return `<p style="color: green;">✅ No ${tooltipHTML.toLowerCase()}.</p>`;
     }
 }
 
