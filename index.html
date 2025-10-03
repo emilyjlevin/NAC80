@@ -57,6 +57,7 @@
             position: relative;
             display: inline-block;
             cursor: help;
+            transition: all 0.2s ease-in-out; /* NEW: smooth transition */
         }
 
         .tooltip .tooltiptext {
@@ -83,6 +84,14 @@
         
         .tooltiptext.not-bold {
             font-weight: normal;
+        }
+        
+        /* Highlight effect on hover */
+        .tooltip:hover {
+        background-color: #f9f9f9;  /* subtle light gray highlight */
+        border-radius: 4px;
+        padding: 2px 4px;
+        transform: scale(1.05);     /* slight grow */
         }
             
     </style>
